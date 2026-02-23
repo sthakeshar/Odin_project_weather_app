@@ -26,26 +26,28 @@
             </header>
 
             <section class="weather-display">
+                <div id="loadingIndicator" style="display: none; color: var(--primary); font-weight: 600; margin: 10px 0;">
+                    Fetching weather data...
+                </div>
                 <div class="weather-card">
                     <div class="header">
-                        <h1 id="cityName">San Francisco</h1>
-                        <span class="status-badge">Live</span>
+                        <h1 id="cityName">--</h1>
+                        <img id="weatherIcon" alt="Weather Icon" style="width: 50px; display: none;"><span class="status-badge">Live</span>
                     </div>
                     <p id="dateText"></p>
-<div class="temp-section">
-    <span class="temp-value" id="tempValue">--°C</span>
-    <p class="description" id="weatherDesc">Search to see conditions</p>
-</div>
-<div class="stats-grid">
-    <div class="stat-item">
-        <span class="label">Humidity</span>
-        <span class="value" id="humidity">--%</span>
-    </div>
-    <div class="stat-item">
-        <span class="label">Wind Speed</span>
-        <span class="value" id="windSpeed">-- km/h</span>
-    </div>
-</div>
+                    <div class="temp-section">
+                        <span class="temp-value" id="tempValue">--°C</span>
+                        <p class="description" id="weatherDesc">Search to see conditions</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="label">Humidity</span>
+                            <span class="value" id="humidity">--%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Wind Speed</span>
+                            <span class="value" id="windSpeed">-- km/h</span>
+                        </div>
                     </div>
                 </div>
             </section>
