@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import './style.css'
-import { getCleanWeather } from './weather.js';
-import { updateWeatherDisplay, toggleLoading } from './display.js';
+import { getCleanWeather, getForecast } from './weather.js';
+import { updateWeatherDisplay, toggleLoading ,updateForecastDisplay } from './display.js';
 
-const apiKey = '2db2d6871071df2785191d5a1e15339c';
+const apiKey = process.env.WEATHER_API_KEY;
 
 const searchBtn = document.getElementById('searchBtn');
 const cityInput = document.getElementById('cityInput');
@@ -13,8 +13,12 @@ async function handleWeatherRequest(city) {
     
     toggleLoading(true);
     try {
-        const cleanData = await getCleanWeather(city, apiKey);
-        updateWeatherDisplay(cleanData);
+        const [currentData, forecastData] = await Promise.all([
+            getCleanWeather(city, apiKey),
+            getForecast(city, apiKey)
+        ]);
+        updateWeatherDisplay(currentData);
+        updateForecastDisplay(forecastData);
     } catch (error) {
         alert(error.message);
     } finally {

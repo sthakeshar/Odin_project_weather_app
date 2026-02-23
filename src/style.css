@@ -178,3 +178,21 @@ button:hover {
     font-size: 1.125rem;
     font-weight: 600;
 }
+#forecastContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.forecast-item {
+    background: var(--bg-main);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    border: 1px solid var(--border);
+}
+
+.day-name { font-weight: 600; color: var(--text-main); }
+.day-temp { color: var(--primary); font-weight: 700; }

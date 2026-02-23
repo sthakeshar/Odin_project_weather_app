@@ -21,3 +21,19 @@ export function toggleLoading(show) {
     const loadingIndicator = document.getElementById('loadingIndicator');
     loadingIndicator.style.display = show ? "block" : "none";
 }
+
+export function updateForecastDisplay(forecastArray) {
+    const forecastContainer = document.getElementById('forecastContainer');
+    forecastContainer.innerHTML = ""; // Clear old data
+
+    forecastArray.forEach(day => {
+        const card = document.createElement('div');
+        card.className = 'forecast-item';
+        card.innerHTML = `
+            <p class="day-name">${day.date}</p>
+            <img src="${day.iconUrl}" alt="${day.condition}">
+            <p class="day-temp">${day.temp}°C</p>
+        `;
+        forecastContainer.appendChild(card);
+    });
+}
