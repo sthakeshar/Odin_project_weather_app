@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyCast Weather</title>
+    <title>KnsCast Weather</title>
 </head>
 <body>
     <div class="app-container">
@@ -11,11 +11,10 @@
             <h2 class="logo">SkyCast</h2>
             <nav class="saved-locations">
                 <p class="section-title">Saved Locations</p>
-                <ul>
-                    <li>Tokyo</li>
-                    <li>London</li>
-                    <li>New York</li>
+                <ul id="savedLocationsList">
+
                 </ul>
+                <button id="addLocationBtn" class="add-btn">+ Add Current City</button>
             </nav>
         </aside>
 
@@ -34,7 +33,7 @@
                         <h1 id="cityName">--</h1>
                         <img id="weatherIcon" alt="Weather Icon" style="width: 50px; display: none;"><span class="status-badge">Live</span>
                     </div>
-                    <p id="dateText"></p>
+                    <p id="localTime">Local Time: --:--</p>
                     <div class="temp-section">
                         <span class="temp-value" id="tempValue">--°C</span>
                         <p class="description" id="weatherDesc">Search to see conditions</p>

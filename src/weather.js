@@ -6,7 +6,8 @@ function processWeatherData(data) {
         description: data.weather[0].description,
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
-        iconUrl: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+        iconUrl: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
+        timezone: data.timezone,
     };
 }
 
@@ -41,3 +42,28 @@ export async function getForecast(city, apiKey) {
         condition: day.weather[0].main
     }));
 }
+// Fetch current weather by coordinates
+export async function getWeatherByCoords(lat, lon, apiKey) {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    const response = await fetch(url, { mode: 'cors' });
+    if (!response.ok) throw new Error("Location weather unavailable");
+    const data = await response.json();
+    return processWeatherData(data);
+}
+// Fetch forecast by coordinates
+export async function getForecastByCoords(lat, lon, apiKey) {
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    const response = await fetch(url, { mode: 'cors' });
+    if (!response.ok) throw new Error("Forecast unavailable");
+    const data = await response.json();
+    
+    // Filter for 12:00 PM slots
+    const dailyData = data.list.filter(item => item.dt_txt.includes("12:00:00"));
+    return dailyData.map(day => ({
+        date: new Date(day.dt * 1000).toLocaleDateString('en-US', { weekday: 'short' }),
+        temp: Math.round(day.main.temp),
+        iconUrl: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`,
+        condition: day.weather[0].main
+    }));
+}
+
